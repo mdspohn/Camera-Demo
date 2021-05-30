@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Prototype 0.0.1</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body>
+
+  <!-------------------------------->
+  <!-- Gameplay Canvas ------------->
+  <!-------------------------------->
+
+    <canvas id="canvas" width="480" height="270"></canvas>
+
+  <!-------------------------------->
+  <!-- Development ----------------->
+  <!-------------------------------->
+
+    <section id="tools-wrapper" class="show">
+      <section id="tools-button">
+        <h1>Tools / Settings</h1>
+      </section>
+
+      <section id="tools">
+
+        <section id="engine" class="running">
+          <div class="header">Engine</div>
+          <div id="start-engine" class="button grey">Start</div>
+          <div id="stop-engine" class="button red">Stop</div>
+          <div id="fps" class="button black"><span>60</span> FPS</div>
+        </section>
+
+        <section id="camera">
+          <div class="header">Camera Options</div>
+          <div class="checkbox">
+            <input type="checkbox" id="drag" name="drag">
+            <label for="drag">Click and Drag</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="eos" name="eos">
+            <label for="eos">Edge-of-Screen Panning</label>
+          </div>
+          <div class="checkbox">
+            <input type="checkbox" id="keyboard" name="keyboard">
+            <label for="keyboard">Keyboard Panning (WASD)</label>
+          </div>
+        </section>
+
+        <section id="scenario">
+          <div class="header">Change Scenario / Map</div>
+          <div class="pseudo-select">
+            <div id="selected-scenario">Forest Ruins</div>
+            <div class="pseudo-select-options">
+              <div id="pond">Pond</div>
+              <div id="ruins" class="selected">Forest Ruins</div>
+            </div>
+          </div>
+        </section>
+
+      </section>
+    </section>
+    
+  </body>
+
+  <!---------------------------------->
+  <!-- Engine Classes ---------------->
+  <!---------------------------------->
+
+  <!-- Models / Game Objects -->
+  <script type="text/javascript" src="src/models/Asset.js"></script>
+  <script type="text/javascript" src="src/models/Location.js"></script>
+  <script type="text/javascript" src="src/models/Tile.js"></script>
+  <script type="text/javascript" src="src/models/Area.js"></script>
+  <script type="text/javascript" src="src/models/Decorations.js"></script>
+  <script type="text/javascript" src="src/models/Scenario.js"></script>
+
+  <!-- Controllers -->
+  <script type="text/javascript" src="src/controllers/Combat.js"></script>
+
+  <!-- Engine Logic -->
+  <script type="text/javascript" src="src/Events.js"></script>
+  <script type="text/javascript" src="src/Transitions.js"></script>
+  <script type="text/javascript" src="src/Input.js"></script>
+  <script type="text/javascript" src="src/Camera.js"></script>
+  <script type="text/javascript" src="src/Game.js"></script>
+  <script type="text/javascript" src="src/Engine.js"></script>
+
+  <!-- Development Tools -->
+  <script type="text/javascript" src="src/DevTools.js"></script>
+
+  <!---------------------------------->
+  <!-- Initialization ---------------->
+  <!---------------------------------->
+
+  <script type="text/javascript">
+    const ASSET_DIR = 'assets',
+          OS_FILE_SEPARATOR = '/'
+          STATE_TITLE  = 0,
+          STATE_COMBAT = 1,
+          STATE_TOWN   = 2,
+          STATE_WORLD  = 3;
+
+    const Events      = new EventManager(),
+          Input       = new InputManager(),
+          Transitions = new TransitionManager(),
+          Game        = new GameManager(),
+          Engine      = new EngineLoop();
+
+    // Development Tools
+    const Tools = new DevTools();
+    
+    Game.load().then(() => Engine.start());
+  </script>
+</html>

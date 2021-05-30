@@ -1,0 +1,286 @@
+/* ---------------------------------
+# CSS Reset
+----------------------------------------------- */
+
+html {
+    color: #000000;
+    background: #ffffff;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6,
+pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+fieldset, img {
+    border: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+input, textarea ,select {
+    *font-size: 100%;
+}
+*:focus {
+    outline: none;
+}
+
+/* ---------------------------------
+# General
+----------------------------------------------- */
+
+@font-face {
+    font-family: Equipment;
+    src: url("EquipmentPro.ttf");
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    font-family: Equipment;
+    word-spacing: -1px;
+    font-size: 30px;
+    background-color: #111111;
+    color: #FFFFFF;
+    background: url('assets/backgrounds/bg.png') no-repeat;
+    background-size: 100% 100%;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-shadow: 1px  1px 0 #000,
+                -1px  1px 0 #000,
+                 1px -1px 0 #000,
+                -1px -1px 0 #000,
+                 0px  1px 0 #000,
+                 0px -1px 0 #000,
+                -1px  0px 0 #000,
+                 1px  0px 0 #000;
+}
+
+canvas {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+canvas.dragging {
+    cursor: grab;
+}
+
+/* ---------------------------------
+# Gameplay Canvas
+----------------------------------------------- */
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ---------------------------------
+# Development Tools
+----------------------------------------------- */
+
+#tools-wrapper {
+    position:absolute;
+    top: 20px;
+    left: 20px;
+    width: 350px;
+}
+
+#tools-button {
+    padding: 10px 20px;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.2);
+    background-color: #444444;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+#tools-button:after {
+    content: '☰';
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+#tools-wrapper.hide #tools-button:not(:hover) {
+    opacity: 0.7;
+}
+
+#tools-wrapper.hide #tools {
+    display: none;
+}
+
+#tools {
+    padding-top: 20px;
+    background-color: #252525;
+    color: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-top: 0;
+}
+
+#tools > section {
+    padding: 0 20px;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+#tools .header {
+    font-size: 24px;
+    color: #999999;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#engine #start-engine {
+    padding-left: 15px;
+}
+
+#engine #start-engine:before {
+    content: '⚙️';
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+#engine.running #start-engine:before {
+    animation: rotation 4s infinite linear;
+}
+
+#engine .button {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 20px;
+}
+
+#engine .button#fps {
+    float: right;
+}
+
+#engine .button.grey {
+    opacity: 0.6;
+    cursor: not-allowed
+}
+
+#engine .button.green {
+    background-color: rgb(34, 133, 55);
+    cursor: pointer;
+}
+
+#engine .button.red {
+    background-color: rgb(146, 56, 56);
+    cursor: pointer;
+}
+
+#engine .button.black {
+    padding: 11px 20px;
+    border: none;
+}
+
+#camera {
+    margin-top: 20px;
+    position: relative;
+    padding: 10px 20px;
+    border-left: none;
+}
+
+#camera > .checkbox, #camera > .checkbox label, #camera > .checkbox input {
+    cursor: pointer;
+}
+
+#camera > .checkbox {
+    margin-bottom: 10px;
+}
+
+#camera > .checkbox label {
+    padding-left: 10px;
+}
+
+#tools > #scenario {
+    margin-bottom: 20px;
+}
+
+#scenario .pseudo-select {
+    width: calc(100% - 40px);
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#scenario .pseudo-select:after {
+    content: '▼';
+    display: block;
+    position: absolute;
+    font-size: 20px;
+    right: 15px;
+    top: 12px;
+}
+
+#scenario .pseudo-select.show:after {
+    content: '▲';
+}
+
+#scenario .pseudo-select-options {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    left: -1px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.3);
+    background-color: #252525;
+    cursor: pointer;
+}
+
+#scenario .pseudo-select-options > div {
+    padding: 10px 20px;
+    position: relative;
+}
+
+#scenario .pseudo-select-options > div:hover {
+    background-color: #444444;
+}
+
+#scenario .pseudo-select-options > div.selected {
+    cursor: default;
+    opacity: 0.4;
+}
+
+#scenario .pseudo-select-options > div.selected:hover {
+    background-color: #252525;
+}
+
+#scenario .pseudo-select-options > div.selected:after {
+    content: '< Selected >';
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+}
+
+#scenario .pseudo-select.show .pseudo-select-options {
+    display: block;
+}
