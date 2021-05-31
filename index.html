@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Prototype 0.0.1</title>
+    <title>Camera Demo</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="main.css" />
@@ -27,7 +27,7 @@
 
         <section id="engine" class="running">
           <div class="header">Engine</div>
-          <div id="start-engine" class="button grey">Start</div>
+          <div id="start-engine" class="button">Start</div>
           <div id="stop-engine" class="button red">Stop</div>
           <div id="fps" class="button black"><span>60</span> FPS</div>
         </section>
@@ -52,10 +52,15 @@
           <div class="header">Change Scenario / Map</div>
           <div class="pseudo-select">
             <div id="selected-scenario">Forest Ruins</div>
-            <div class="pseudo-select-options">
-              <div id="pond">Pond</div>
-              <div id="ruins" class="selected">Forest Ruins</div>
-            </div>
+            <div class="pseudo-select-options"></div>
+          </div>
+        </section>
+
+        <section id="transition">
+          <div class="header">Transition Type</div>
+          <div class="pseudo-select">
+            <div id="selected-transition">Random</div>
+            <div class="pseudo-select-options"></div>
           </div>
         </section>
 
@@ -69,26 +74,7 @@
   <!---------------------------------->
 
   <!-- Models / Game Objects -->
-  <script type="text/javascript" src="src/models/Asset.js"></script>
-  <script type="text/javascript" src="src/models/Location.js"></script>
-  <script type="text/javascript" src="src/models/Tile.js"></script>
-  <script type="text/javascript" src="src/models/Area.js"></script>
-  <script type="text/javascript" src="src/models/Decorations.js"></script>
-  <script type="text/javascript" src="src/models/Scenario.js"></script>
-
-  <!-- Controllers -->
-  <script type="text/javascript" src="src/controllers/Combat.js"></script>
-
-  <!-- Engine Logic -->
-  <script type="text/javascript" src="src/Events.js"></script>
-  <script type="text/javascript" src="src/Transitions.js"></script>
-  <script type="text/javascript" src="src/Input.js"></script>
-  <script type="text/javascript" src="src/Camera.js"></script>
-  <script type="text/javascript" src="src/Game.js"></script>
-  <script type="text/javascript" src="src/Engine.js"></script>
-
-  <!-- Development Tools -->
-  <script type="text/javascript" src="src/DevTools.js"></script>
+  <script type="text/javascript" src="src.min.js"></script>
 
   <!---------------------------------->
   <!-- Initialization ---------------->
@@ -104,6 +90,7 @@
 
     const Events      = new EventManager(),
           Input       = new InputManager(),
+          Cinematics  = new CinematicManager(),
           Transitions = new TransitionManager(),
           Game        = new GameManager(),
           Engine      = new EngineLoop();
