@@ -18,52 +18,43 @@
   <!-- Development ----------------->
   <!-------------------------------->
 
-    <section id="tools-wrapper" class="show">
-      <section id="tools-button">
-        <h1>Tools / Settings</h1>
+    <section id="development-tools" class="show">
+      <section id="engine" class="running">
+        <button id="start" class="button">Start</button>
+        <button id="stop" class="button red">Stop</button>
+        <span id="fps"><span>60</span> FPS</span>
       </section>
 
-      <section id="tools">
+      <section id="camera">
+        <h2 class="header">Camera Options</h2>
+        <div class="checkbox">
+          <input type="checkbox" id="drag" name="drag">
+          <label for="drag">Click and Drag</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="eos" name="eos">
+          <label for="eos">Edge-of-Screen Panning</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="keyboard" name="keyboard">
+          <label for="keyboard">Keyboard Panning (WASD)</label>
+        </div>
+      </section>
 
-        <section id="engine" class="running">
-          <div class="header">Engine</div>
-          <div id="start-engine" class="button">Start</div>
-          <div id="stop-engine" class="button red">Stop</div>
-          <div id="fps" class="button black"><span>60</span> FPS</div>
-        </section>
-
-        <section id="camera">
-          <div class="header">Camera Options</div>
-          <div class="checkbox">
-            <input type="checkbox" id="drag" name="drag">
-            <label for="drag">Click and Drag</label>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" id="eos" name="eos">
-            <label for="eos">Edge-of-Screen Panning</label>
-          </div>
-          <div class="checkbox">
-            <input type="checkbox" id="keyboard" name="keyboard">
-            <label for="keyboard">Keyboard Panning (WASD)</label>
-          </div>
-        </section>
-
-        <section id="scenario">
-          <div class="header">Change Scenario / Map</div>
-          <div class="pseudo-select">
-            <div id="selected-scenario">Forest Ruins</div>
-            <div class="pseudo-select-options"></div>
-          </div>
-        </section>
-
-        <section id="transition">
-          <div class="header">Transition Type</div>
-          <div class="pseudo-select">
-            <div id="selected-transition">Random</div>
-            <div class="pseudo-select-options"></div>
-          </div>
-        </section>
-
+      <section id="scenario">
+        <h2 class="header">Scenario</h2>
+        <div class="pseudo-select">
+          <div id="selected-scenario">Forest Ruins</div>
+          <div class="pseudo-select-options"></div>
+        </div>
+      </section>
+      
+      <section id="transition">
+        <h2 class="header">Transition Type</h2>
+        <div class="pseudo-select">
+          <div id="selected-transition">Squares</div>
+          <div class="pseudo-select-options"></div>
+        </div>
       </section>
     </section>
     
@@ -72,8 +63,6 @@
   <!---------------------------------->
   <!-- Engine Classes ---------------->
   <!---------------------------------->
-
-  <!-- Models / Game Objects -->
   <script type="text/javascript" src="src.min.js"></script>
 
   <!---------------------------------->
@@ -81,6 +70,8 @@
   <!---------------------------------->
 
   <script type="text/javascript">
+    const DEV_BUILD = true;
+
     const ASSET_DIR = 'assets',
           OS_FILE_SEPARATOR = '/'
           STATE_TITLE  = 0,
@@ -90,12 +81,10 @@
 
     const Events      = new EventManager(),
           Input       = new InputManager(),
-          Cinematics  = new CinematicManager(),
           Transitions = new TransitionManager(),
           Game        = new GameManager(),
           Engine      = new EngineLoop();
 
-    // Development Tools
     const Tools = new DevTools();
     
     Game.load().then(() => Engine.start());
